@@ -6,20 +6,45 @@
     <title>Clarity AI - Your Personal Mental Wellness Companion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --sage-50: #f6f7f4;
+            --sage-100: #e8ebe4;
+            --sage-200: #d4dbc9;
+            --sage-300: #b8c4a6;
+            --sage-400: #9aab82;
+            --sage-500: #7d9163;
+            --sage-600: #62744d;
+            --sage-700: #4d5b3e;
+            --sage-800: #404a35;
+            --sage-900: #363f2e;
+            --sage-950: #1b2116;
+            --cream: #fdfcf9;
+            --warm-white: #f9f8f4;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            line-height: 1.6;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--sage-900);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
         }
 
         .container {
@@ -28,16 +53,33 @@
             padding: 0 24px;
         }
 
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(184, 196, 166, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(154, 171, 130, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(212, 219, 201, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
         /* Header */
         header {
-            padding: 24px 0;
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
-            background: rgba(15, 15, 35, 0.8);
+            background: rgba(253, 252, 249, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--sage-200);
+            transition: all 0.3s ease;
         }
 
         .header-content {
@@ -50,158 +92,588 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--sage-800);
+            text-decoration: none;
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--sage-400), var(--sage-600));
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 12px rgba(125, 145, 99, 0.3);
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            fill: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--sage-700);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--sage-500);
+        }
+
+        .nav-cta {
+            padding: 10px 20px;
+            background: var(--sage-600);
+            color: white !important;
+            border-radius: 10px;
+            transition: all 0.2s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--sage-700) !important;
+            transform: translateY(-1px);
         }
 
         /* Hero Section */
         .hero {
             padding: 160px 0 100px;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text {
+            max-width: 540px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--sage-100);
+            border: 1px solid var(--sage-200);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--sage-700);
+            margin-bottom: 24px;
+        }
+
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--sage-500);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            line-height: 1.1;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            color: var(--sage-900);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--sage-500), var(--sage-700));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero .subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: #a5b4fc;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-weight: 300;
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--sage-600);
+            margin-bottom: 40px;
+            line-height: 1.8;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(99, 102, 241, 0.2);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 20px;
-            font-size: 14px;
-            color: #a5b4fc;
-            margin-bottom: 24px;
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
-        /* Features */
-        .features {
-            padding: 80px 0;
+        .btn {
+            padding: 16px 28px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
         }
 
-        .features h2 {
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sage-500), var(--sage-600));
+            color: white;
+            box-shadow: 0 4px 20px rgba(125, 145, 99, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(125, 145, 99, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--sage-700);
+            border: 2px solid var(--sage-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--sage-400);
+            background: var(--sage-50);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Phone Mockup */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 280px;
+            height: 580px;
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+            border-radius: 45px;
+            padding: 12px;
+            box-shadow:
+                0 50px 100px -20px rgba(54, 63, 46, 0.3),
+                0 30px 60px -15px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--sage-100) 0%, var(--sage-200) 100%);
+            border-radius: 35px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 28px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .screen-content {
+            padding: 50px 20px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen-header {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 60px;
-            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .screen-header h3 {
+            font-size: 18px;
+            color: var(--sage-800);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .screen-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .screen-card-title {
+            font-size: 12px;
+            color: var(--sage-500);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .screen-card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--sage-800);
+        }
+
+        .mood-dots {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .mood-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--sage-200);
+        }
+
+        .mood-dot:nth-child(1) { background: var(--sage-300); }
+        .mood-dot:nth-child(2) { background: var(--sage-400); }
+        .mood-dot:nth-child(3) { background: var(--sage-500); }
+        .mood-dot:nth-child(4) { background: var(--sage-400); }
+        .mood-dot:nth-child(5) { background: var(--sage-300); }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card-1 {
+            top: 15%;
+            left: -60px;
+            animation-delay: 0s;
+        }
+
+        .floating-card-2 {
+            bottom: 25%;
+            right: -60px;
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--sage-400), var(--sage-500));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .floating-text {
+            font-size: 13px;
+            color: var(--sage-600);
+        }
+
+        .floating-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--sage-800);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 80px;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--sage-100);
+            color: var(--sage-600);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 16px;
+            color: var(--sage-900);
+        }
+
+        .section-header p {
+            color: var(--sage-600);
+            font-size: 1.1rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 32px;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 32px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: var(--warm-white);
+            border: 1px solid var(--sage-100);
+            border-radius: 24px;
+            padding: 36px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sage-400), var(--sage-600));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 40px rgba(54, 63, 46, 0.1);
+            border-color: var(--sage-200);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 16px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--sage-100), var(--sage-200));
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 28px;
+            margin-bottom: 24px;
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin-bottom: 12px;
-            color: #ffffff;
+            color: var(--sage-800);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
         }
 
         .feature-card p {
-            color: #94a3b8;
+            color: var(--sage-600);
             font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        /* AI Section */
-        .ai-section {
-            padding: 80px 0;
+        /* Screenshots Section */
+        .screenshots {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--sage-50) 0%, white 100%);
+            overflow: hidden;
+        }
+
+        .screenshots-scroll {
+            display: flex;
+            gap: 24px;
+            padding: 40px 0;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .screenshot-item {
+            flex-shrink: 0;
+            width: 240px;
+            height: 480px;
+            background: linear-gradient(180deg, var(--sage-200), var(--sage-300));
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
             text-align: center;
         }
 
-        .ai-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .screenshot-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
         }
 
-        .ai-section p {
-            color: #94a3b8;
-            max-width: 700px;
-            margin: 0 auto 40px;
+        .screenshot-placeholder-text {
+            color: var(--sage-700);
+            font-weight: 500;
         }
 
-        .ai-models {
+        /* Privacy Section */
+        .privacy {
+            padding: 120px 0;
+            background: var(--sage-900);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .privacy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(125, 145, 99, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(154, 171, 130, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .privacy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .privacy h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .privacy p {
+            color: var(--sage-300);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+
+        .privacy-features {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            max-width: 800px;
-            margin: 0 auto;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .ai-chip {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 30px;
-            font-size: 14px;
-            color: #e2e8f0;
+        .privacy-feature {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .privacy-feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .privacy-feature span {
+            font-size: 1rem;
+            color: var(--sage-200);
+        }
+
+        .privacy-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shield-icon {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--sage-500), var(--sage-700));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(125, 145, 99, 0.4);
+            font-size: 80px;
         }
 
         /* CTA Section */
         .cta {
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
+            background: white;
+            position: relative;
         }
 
         .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px;
+            color: var(--sage-900);
         }
 
         .cta p {
-            color: #94a3b8;
-            margin-bottom: 40px;
+            color: var(--sage-600);
+            font-size: 1.15rem;
+            margin-bottom: 48px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
@@ -211,176 +683,417 @@
             flex-wrap: wrap;
         }
 
-        .btn {
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            background: var(--sage-900);
+            color: white;
+            border-radius: 14px;
             text-decoration: none;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-        }
-
-        .btn-primary:hover {
+        .store-btn:hover {
+            background: var(--sage-800);
             transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 30px rgba(54, 63, 46, 0.3);
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .store-btn svg {
+            width: 28px;
+            height: 28px;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
+        .store-btn-text {
+            text-align: left;
+        }
+
+        .store-btn-label {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .store-btn-name {
+            font-size: 16px;
+            font-weight: 600;
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0 40px;
+            background: var(--sage-950);
+            color: var(--sage-400);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .footer-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--sage-500), var(--sage-600));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: var(--sage-400);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--sage-800);
             text-align: center;
-            color: #64748b;
             font-size: 14px;
         }
 
-        /* Glow effects */
-        .glow {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.3;
-            pointer-events: none;
-        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 60px;
+            }
 
-        .glow-1 {
-            background: #6366f1;
-            top: 10%;
-            left: 10%;
-        }
+            .hero-text {
+                max-width: 100%;
+            }
 
-        .glow-2 {
-            background: #8b5cf6;
-            bottom: 20%;
-            right: 10%;
-        }
+            .hero-buttons {
+                justify-content: center;
+            }
 
-        .hero-wrapper {
-            position: relative;
-            overflow: hidden;
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .privacy-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .privacy-features {
+                align-items: center;
+            }
+
+            .floating-card {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
+
+            .store-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="bg-gradient"></div>
+
     <header>
         <div class="container header-content">
-            <div class="logo">
+            <a href="#" class="logo">
                 <div class="logo-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <svg viewBox="0 0 24 24" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <path d="M12 6v6l4 2"/>
                     </svg>
                 </div>
-                Clarity AI
-            </div>
+                Clarity
+            </a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#download" class="nav-cta">Download</a>
+            </nav>
         </div>
     </header>
 
-    <div class="hero-wrapper">
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-
-        <section class="hero">
-            <div class="container">
-                <span class="badge">Android App</span>
-                <h1>Your Personal Mental Wellness Companion</h1>
-                <p class="subtitle">Clarity AI combines cutting-edge artificial intelligence with thoughtful design to help you understand your mind, track your journey, and find moments of peace.</p>
-            </div>
-        </section>
-    </div>
-
-    <section class="features">
+    <section class="hero">
         <div class="container">
-            <h2>Features</h2>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="badge">Now Available on iOS & Android</span>
+                    <h1>Find <span>Clarity</span> in Your Mental Wellness Journey</h1>
+                    <p class="hero-subtitle">An intelligent companion that helps you understand your mind, track your emotional patterns, and discover moments of peace—all with complete privacy.</p>
+                    <div class="hero-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.clarityai.journal" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
+                            </svg>
+                            Google Play
+                        </a>
+                        <a href="https://testflight.apple.com/join/pds92Z7K" class="btn btn-secondary">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            iOS TestFlight
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card floating-card-1">
+                        <div class="floating-icon">🧘</div>
+                        <div>
+                            <div class="floating-text">Today's Focus</div>
+                            <div class="floating-value">Mindfulness</div>
+                        </div>
+                    </div>
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="screen-content">
+                                <div class="screen-header">
+                                    <h3>Good morning</h3>
+                                </div>
+                                <div class="screen-card">
+                                    <div class="screen-card-title">CLARITY SCORE</div>
+                                    <div class="screen-card-value">87%</div>
+                                    <div class="mood-dots">
+                                        <div class="mood-dot"></div>
+                                        <div class="mood-dot"></div>
+                                        <div class="mood-dot"></div>
+                                        <div class="mood-dot"></div>
+                                        <div class="mood-dot"></div>
+                                    </div>
+                                </div>
+                                <div class="screen-card">
+                                    <div class="screen-card-title">WEEKLY INSIGHTS</div>
+                                    <div class="screen-card-value">+12%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-card floating-card-2">
+                        <div class="floating-icon">✨</div>
+                        <div>
+                            <div class="floating-text">Streak</div>
+                            <div class="floating-value">14 Days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Features</span>
+                <h2>Everything You Need for Mental Clarity</h2>
+                <p>Thoughtfully designed tools to help you understand and nurture your mental wellness.</p>
+            </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>AI-Powered Conversations</h3>
-                    <p>Chat naturally with advanced AI models that understand context and provide thoughtful, personalized responses for your mental wellness journey.</p>
+                    <div class="feature-icon">💭</div>
+                    <h3>AI Conversations</h3>
+                    <p>Engage in meaningful conversations with an AI that understands context and provides thoughtful, personalized responses.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Constellation Insights</h3>
-                    <p>Visualize your emotional patterns and mental clarity over time with beautiful, intuitive data visualizations.</p>
+                    <h3>Insight Tracking</h3>
+                    <p>Visualize your emotional patterns over time with beautiful, intuitive charts and discover what affects your wellbeing.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔐</div>
-                    <h3>Glass Vault</h3>
-                    <p>Securely store your personal reflections, journal entries, and sensitive notes with encrypted local storage.</p>
+                    <h3>Secure Vault</h3>
+                    <p>Your private space for reflections and journal entries, protected with encryption and stored locally on your device.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🌟</div>
-                    <h3>Premium Insights</h3>
-                    <p>Unlock deeper understanding with advanced analytics and personalized recommendations based on your unique patterns.</p>
+                    <div class="feature-icon">🌙</div>
+                    <h3>Daily Reflections</h3>
+                    <p>Guided prompts and exercises to help you process your day and cultivate a mindful evening routine.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
-                    <h3>Neural Map</h3>
-                    <p>Explore the connections between your thoughts, emotions, and behaviors through an interactive neural visualization.</p>
+                    <h3>Personal Goals</h3>
+                    <p>Set meaningful wellness goals and track your progress with gentle reminders and celebrations.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">♿</div>
-                    <h3>Accessibility First</h3>
-                    <p>Designed with invisible disabilities in mind, offering customizable interfaces and supportive features for everyone.</p>
+                    <h3>Accessible Design</h3>
+                    <p>Built with everyone in mind, featuring customizable interfaces and thoughtful accommodations.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="ai-section">
+    <section class="screenshots">
         <div class="container">
-            <h2>Intelligent & Private</h2>
-            <p>Powered by advanced AI that understands context and nuance, while keeping your data secure and private.</p>
+            <div class="section-header">
+                <span class="section-label">App Preview</span>
+                <h2>Designed with Care</h2>
+                <p>A calming, intuitive interface that makes self-care feel effortless.</p>
+            </div>
+        </div>
+        <div class="screenshots-scroll">
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">🏠</div>
+                    <div class="screenshot-placeholder-text">Home Dashboard</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">💬</div>
+                    <div class="screenshot-placeholder-text">AI Chat</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">📈</div>
+                    <div class="screenshot-placeholder-text">Insights</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">📝</div>
+                    <div class="screenshot-placeholder-text">Journal</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">⚙️</div>
+                    <div class="screenshot-placeholder-text">Settings</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">🏠</div>
+                    <div class="screenshot-placeholder-text">Home Dashboard</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">💬</div>
+                    <div class="screenshot-placeholder-text">AI Chat</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">📈</div>
+                    <div class="screenshot-placeholder-text">Insights</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">📝</div>
+                    <div class="screenshot-placeholder-text">Journal</div>
+                </div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">
+                    <div class="screenshot-placeholder-icon">⚙️</div>
+                    <div class="screenshot-placeholder-text">Settings</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="cta">
+    <section class="privacy" id="privacy">
         <div class="container">
-            <h2>Begin Your Journey to Clarity</h2>
-            <p>Take the first step towards understanding yourself better.</p>
+            <div class="privacy-content">
+                <div>
+                    <h2>Your Privacy is Sacred</h2>
+                    <p>We believe your innermost thoughts deserve the highest protection. Clarity is built with privacy at its core.</p>
+                    <div class="privacy-features">
+                        <div class="privacy-feature">
+                            <div class="privacy-feature-icon">🔒</div>
+                            <span>End-to-end encryption for all data</span>
+                        </div>
+                        <div class="privacy-feature">
+                            <div class="privacy-feature-icon">📱</div>
+                            <span>Data stored locally on your device</span>
+                        </div>
+                        <div class="privacy-feature">
+                            <div class="privacy-feature-icon">🚫</div>
+                            <span>No tracking, no ads, ever</span>
+                        </div>
+                        <div class="privacy-feature">
+                            <div class="privacy-feature-icon">👤</div>
+                            <span>No account required to start</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="privacy-visual">
+                    <div class="shield-icon">🛡️</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="download">
+        <div class="container">
+            <h2>Start Your Journey Today</h2>
+            <p>Download Clarity and take the first step toward understanding yourself better.</p>
             <div class="cta-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.clarityai.journal" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <a href="https://play.google.com/store/apps/details?id=com.clarityai.journal" class="store-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
                     </svg>
-                    Get on Google Play
+                    <div class="store-btn-text">
+                        <div class="store-btn-label">GET IT ON</div>
+                        <div class="store-btn-name">Google Play</div>
+                    </div>
                 </a>
-                <a href="https://testflight.apple.com/join/pds92Z7K" class="btn btn-secondary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <a href="https://testflight.apple.com/join/pds92Z7K" class="store-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                     </svg>
-                    Get on iOS (TestFlight)
+                    <div class="store-btn-text">
+                        <div class="store-btn-label">DOWNLOAD ON</div>
+                        <div class="store-btn-name">iOS TestFlight</div>
+                    </div>
                 </a>
             </div>
         </div>
@@ -388,7 +1101,25 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Clarity AI. Built with care for your mental wellness.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" stroke="white" stroke-width="2" fill="none">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    Clarity
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Clarity AI. Built with care for your mental wellness.</p>
+            </div>
         </div>
     </footer>
 </body>
