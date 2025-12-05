@@ -572,6 +572,131 @@
             transform: scale(1.05);
         }
 
+        /* Showcase Phone Mockups */
+        .showcase-phone {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--sage-100) 0%, var(--sage-200) 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 60px 24px 24px;
+        }
+
+        .showcase-phone-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .showcase-phone-header h4 {
+            font-size: 14px;
+            color: var(--sage-500);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .showcase-phone-header h3 {
+            font-size: 22px;
+            color: var(--sage-800);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .showcase-phone-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .showcase-phone-card-title {
+            font-size: 11px;
+            color: var(--sage-500);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .showcase-phone-card-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--sage-800);
+            margin-bottom: 4px;
+        }
+
+        .showcase-phone-card-sub {
+            font-size: 13px;
+            color: var(--sage-500);
+        }
+
+        .insight-bars {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            align-items: flex-end;
+            height: 60px;
+        }
+
+        .insight-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--sage-400), var(--sage-500));
+            border-radius: 6px;
+            min-height: 20px;
+        }
+
+        .insight-bar:nth-child(1) { height: 45%; }
+        .insight-bar:nth-child(2) { height: 70%; }
+        .insight-bar:nth-child(3) { height: 55%; }
+        .insight-bar:nth-child(4) { height: 85%; }
+        .insight-bar:nth-child(5) { height: 65%; }
+        .insight-bar:nth-child(6) { height: 90%; }
+        .insight-bar:nth-child(7) { height: 75%; }
+
+        .metric-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(var(--sage-500) 0deg, var(--sage-500) 280deg, var(--sage-200) 280deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            position: relative;
+        }
+
+        .metric-circle::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .metric-circle-value {
+            position: relative;
+            z-index: 1;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--sage-800);
+        }
+
+        .emotion-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .emotion-tag {
+            padding: 6px 12px;
+            background: var(--sage-100);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--sage-700);
+            font-weight: 500;
+        }
+
         .showcase-card-overlay {
             position: absolute;
             bottom: 0;
@@ -1077,7 +1202,37 @@
                         <div class="showcase-float-icon">🔒</div>
                         <div class="showcase-float-text">100% Private</div>
                     </div>
-                    <img src="images/insights.png" alt="Thoughtful, private insights - On-device AI for deeper personal understanding">
+                    <div class="showcase-phone">
+                        <div class="showcase-phone-header">
+                            <h4>Your Insights</h4>
+                            <h3>Weekly Overview</h3>
+                        </div>
+                        <div class="showcase-phone-card">
+                            <div class="showcase-phone-card-title">Clarity Score</div>
+                            <div class="showcase-phone-card-value">92%</div>
+                            <div class="showcase-phone-card-sub">+8% from last week</div>
+                        </div>
+                        <div class="showcase-phone-card">
+                            <div class="showcase-phone-card-title">Mood Trend</div>
+                            <div class="insight-bars">
+                                <div class="insight-bar"></div>
+                                <div class="insight-bar"></div>
+                                <div class="insight-bar"></div>
+                                <div class="insight-bar"></div>
+                                <div class="insight-bar"></div>
+                                <div class="insight-bar"></div>
+                                <div class="insight-bar"></div>
+                            </div>
+                        </div>
+                        <div class="showcase-phone-card">
+                            <div class="showcase-phone-card-title">Top Emotions</div>
+                            <div class="emotion-tags">
+                                <span class="emotion-tag">Peaceful</span>
+                                <span class="emotion-tag">Focused</span>
+                                <span class="emotion-tag">Grateful</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="showcase-card-overlay">
                         <h3 class="showcase-card-title">Private Insights</h3>
                         <p class="showcase-card-desc">On-device AI that understands you deeply, without compromising your privacy.</p>
@@ -1088,7 +1243,32 @@
                         <div class="showcase-float-icon">📊</div>
                         <div class="showcase-float-text">AI Powered</div>
                     </div>
-                    <img src="images/metrics.png" alt="See your emotional metrics - AI reveals daily usage patterns">
+                    <div class="showcase-phone">
+                        <div class="showcase-phone-header">
+                            <h4>Daily Check-in</h4>
+                            <h3>How are you feeling?</h3>
+                        </div>
+                        <div class="showcase-phone-card" style="text-align: center;">
+                            <div class="metric-circle">
+                                <span class="metric-circle-value">78%</span>
+                            </div>
+                            <div class="showcase-phone-card-title">Wellness Score</div>
+                            <div class="showcase-phone-card-sub">You're doing great today!</div>
+                        </div>
+                        <div class="showcase-phone-card">
+                            <div class="showcase-phone-card-title">Today's Reflection</div>
+                            <div class="showcase-phone-card-sub" style="font-style: italic; line-height: 1.6;">
+                                "Feeling more centered after this morning's meditation. Looking forward to a productive day."
+                            </div>
+                        </div>
+                        <div class="showcase-phone-card">
+                            <div class="showcase-phone-card-title">Suggested Activity</div>
+                            <div class="emotion-tags">
+                                <span class="emotion-tag">5min Breathing</span>
+                                <span class="emotion-tag">Journal</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="showcase-card-overlay">
                         <h3 class="showcase-card-title">Emotional Metrics</h3>
                         <p class="showcase-card-desc">Discover patterns in your daily life you never knew existed.</p>
